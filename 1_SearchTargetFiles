@@ -1,0 +1,20 @@
+#利用函数os.walk()来完成遍历
+#for root,dirs,files in os.walk(path_hub):
+#    print("Current path:"+ root) #当前访问文件夹的路径
+#    print(dirs)                  #当前文件夹内存在的路径；路径可继续访问下层路径
+#    print(files)                 #当前文件夹内存在的文件；文件不可继续访问
+
+import os
+
+def search(path_tif,path_hub):
+     for root,dirs,files in os.walk(path_hub):
+        for file in files:
+             if  os.path.splitext(file)[1] == '.tif':
+                 file1 = root+'\\'+file
+                 path_tif.append(file1)
+
+path_hub="开始查找的文件夹路径；全英文；无空格"
+path_tif=[]
+search(path_tif,path_hub)
+
+print(path_tif)
