@@ -1,26 +1,3 @@
-#利用函数os.walk()来完成遍历
-#for root,dirs,files in os.walk(path_hub):
-#    print("Current path:"+ root) #当前访问文件夹的路径
-#    print(dirs)                  #当前文件夹内存在的路径；路径可继续访问下层路径
-#    print(files)                 #当前文件夹内存在的文件；文件不可继续访问
-
-import os
-
-def search(path_tif,path_hub):
-     for root,dirs,files in os.walk(path_hub):
-        for file in files:
-             if  os.path.splitext(file)[1] == '.tif':
-                 file1 = root+'\\'+file
-                 path_tif.append(file1)
-
-path_hub="F:\Dropbox (Yale_FES)\ReforestationHub\State_Spatial_Data"
-path_tif=[]
-search(path_tif,path_hub)
-print(path_tif)
-
-import arcpy
-from arcpy.sa import * #Reclassify是Spatial Analyst的工具之一，所以要导入arcpy.sa
-
 myRemapRange = RemapRange([[0,40,"NODATA"],[40,43,1],[43,828,"NODATA"]])
 out_path="F:\Dropbox (Yale_FES)\ReforestationHub\Output\Reclassify_forests"
 for file in path_tif:
@@ -29,24 +6,3 @@ for file in path_tif:
     out = out_path + "\\" + os.path.basename(file)[0:2] + "_Forests.tif"
     outReclass.save(out)
 
-#fields = arcpy.ListFields(path_tif[5])
-#print(fields[4].name)
-#outReclass=Reclassify(path_tif[4],fields[4].name,myRemapRange,"NODATA")
-#out = out_path + "\\" + os.path.basename(file)[0:2] + "_Forests.tif"
-#outReclass.save(out)
-
-#print(path_tif[0])
-
-#for field in fields:
-#  print("{0} is a type of {1} with a length of {2}"
-#         .format(field.name, field.type, field.length))
-#print(os.path.basename(path_tif[1]))
-
-#Use SearchCursor with list comprehension to return a unique set of values in the specified field
-#values = [row[0] for row in arcpy.da.SearchCursor(path_tif[0], fields[4].name)]
-#uniqueValues = set(values)
-#print(uniqueValues)
-
-#print(fields[:].name)
-#我们要用的是fields[4],是NLCD_01
-#    for fields in fields
