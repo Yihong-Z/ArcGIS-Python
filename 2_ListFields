@@ -7,4 +7,12 @@ for field in fields:
 #查看其中一个field的信息
 #fields中存储了若干个field，每个field有.name，.type，.length三个属性
 print(fields[0].name)
-       
+
+#生成field名字列表
+field_names = [f.name for f in arcpy.ListFields(path_tif[0])]
+
+#利用arcpy.da.SearchCursor访问某个field中的唯一值。path_tif[0]是栅格对象，fields[4].name是field名称
+values = [row[0] for row in arcpy.da.SearchCursor(path_tif[0], fields[4].name)]
+uniqueValues = set(values)
+print(uniqueValues)
+
