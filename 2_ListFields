@@ -1,0 +1,6 @@
+import arcpy
+
+fields=arcpy.ListFields(path_tif[0]) #访问提取出来的目标路径中的第一个
+for field in fields:
+    print("{0} is a type of {1} with a length of {2}"
+          .format(field.name, field.type, field.length))         #ListFields默认会对每个field返回这三个数据
