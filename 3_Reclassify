@@ -1,0 +1,11 @@
+import arcpy
+# from arcpy import env
+from arcpy.sa import * #Reclassify是Spatial Analyst的工具之一，所以要导入arcpy.sa
+
+#以第一个文件夹内的.tif进行示例
+fields=arcpy.ListFields(path_tif[0])  #具体见"2_ListFields"
+
+
+myRemapRange = RemapRange([[0,40,"NODATA"],[40,43,1],[43,828,"NODATA"]])
+outReclass1=Reclassify(path_tif[0],fields[4].name,myRemapRange,"NODATA")
+outReclass1.save("F:....\ 1.tif")  #最后要定义文件名和文件格式
