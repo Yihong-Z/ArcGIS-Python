@@ -4,3 +4,7 @@ fields=arcpy.ListFields(path_tif[0]) #访问提取出来的目标路径中的第
 for field in fields:
     print("{0} is a type of {1} with a length of {2}"
           .format(field.name, field.type, field.length))         #ListFields默认会对每个field返回这三个数据
+#查看其中一个field的信息
+#fields中存储了若干个field，每个field有.name，.type，.length三个属性
+print(fields[0].name)
+       
