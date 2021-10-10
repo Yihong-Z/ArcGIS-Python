@@ -1,8 +1,17 @@
-myRemapRange = RemapRange([[0,40,"NODATA"],[40,43,1],[43,828,"NODATA"]])
+import os
+import numpy as np
+import arcpy
+from arcpy.sa import * # Reclassify是Spatial Analyst的工具之一，所以要导入arcpy.sa
+
+path_tif = np.load('F:\Dropbox (Yale_FES)\ReforestationHub\Output\path_tif.npy')  #path_tif.npy 由"1.path_tif"得到
+#print(path_tif)
+
+myRemapRange = RemapRange([[0, 40,"NODATA"],[40, 43, 1], [43, 828,"NODATA"]])
 out_path="F:\Dropbox (Yale_FES)\ReforestationHub\Output\Reclassify_forests"
-for file in path_tif:
+for file in path_tif[5:]:
     fields = arcpy.ListFields(file)
-    outReclass=Reclassify(file,fields[4].name,myRemapRange,"NODATA")
+    outReclass=Reclassify(file,fields[4].name,myRemapRange , "NODATA")
     out = out_path + "\\" + os.path.basename(file)[0:2] + "_Forests.tif"
     outReclass.save(out)
+    print(file)  #添加这部便于知道哪些图像被成功reclassify了
 
