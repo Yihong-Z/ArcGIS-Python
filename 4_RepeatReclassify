@@ -3,7 +3,7 @@ import numpy as np
 import arcpy
 from arcpy.sa import * # Reclassify是Spatial Analyst的工具之一，所以要导入arcpy.sa
 
-path_tif = np.load('F:\Dropbox (Yale_FES)\ReforestationHub\Output\path_tif.npy')  #path_tif.npy 由"1.path_tif"得到
+path_tif = np.load('F:\Dropbox (Yale_FES)\ReforestationHub\Output\path_tif.npy')  #path_tif.npy 由"1_SearchTargetFiles"得到
 #print(path_tif)
 
 myRemapRange = RemapRange([[0, 40,"NODATA"],[40, 43, 1], [43, 828,"NODATA"]])
