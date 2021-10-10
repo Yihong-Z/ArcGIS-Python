@@ -9,3 +9,8 @@ fields=arcpy.ListFields(path_tif[0])  #具体见"2_ListFields"
 myRemapRange = RemapRange([[0,40,"NODATA"],[40,43,1],[43,828,"NODATA"]])
 outReclass1=Reclassify(path_tif[0],fields[4].name,myRemapRange,"NODATA")
 outReclass1.save("F:....\ 1.tif")  #最后要定义文件名和文件格式
+
+#进一步完善输出路径
+#out_path="F:..."
+#out= out_path + "\\" + os.path.basename(path_tif[0])[0:2]+ "_Forests.tif"
+#outReclass1.save(out)
